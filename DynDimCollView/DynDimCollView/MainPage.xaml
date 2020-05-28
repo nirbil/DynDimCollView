@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                xmlns:self="clr-namespace:DynDimCollView"
+                x:Name="Root"
+                mc:Ignorable="d"
+                SizeChanged="PageSizeChanged"
+                x:Class="DynDimCollView.MainPage">
+    <StackLayout>
+        <CollectionView x:Name="collectionView" HeightRequest="{Binding ItemsHeight, Source={x:Reference Root}}"
+                        ItemsSource="{Binding Items, Source={x:Reference Root}}"
+                        BackgroundColor="LightGray">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Horizontal"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <self:CustomFrame WidthRequest="{Binding ItemsWidth, Source={x:Reference Root}}"
+                                        BorderColor="Blue">
+                        <StackLayout>
+                            <Label Text="{Binding Name}"/>
+                        </StackLayout>
+                    </self:CustomFrame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
+</ContentPage>
